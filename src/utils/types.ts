@@ -50,7 +50,7 @@ export interface GetAvatarImageArguments {
   crop: Crop;
 }
 
-export type SocialMediaTitles = "X" | "telegram" | "facebook" | "instagram" | "youtube";
+export type SocialMediaTitles = "X" | "telegram" | "facebook" | "instagram" | "youtube" | "github";
 
 export type WalletContextType = UseWalletReturnInterface & LocalCacheChangedType;
 type LocalCacheChangedType = {
