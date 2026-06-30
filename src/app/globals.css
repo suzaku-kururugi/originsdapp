@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
+
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --toastify-color-light: #F1E0C5;
+  --toastify-text-color-light: #3C312B;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+textarea {
+  min-height: 50px;
+  max-height: 150px;
+  resize: none;
+}
+
+.max-w-screen-container {
+  max-width: 1200px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 100, 0, 205;
+  }
+}
+
+.Toastify__toast-container--top-right {
+  margin-top: 72px;
+}
+
+.Toastify__toast {
+  border: solid 2px #3C312B
+}
+
+
+@layer components {
+  .zoom-button,
+  .icon-button,
+  .custom-button {
+    @apply bg-[#F1E0C5] border-2 border-text-primary text-text-primary rounded-xl flex items-center justify-center cursor-pointer p-1;
+    transition: transform 0.3s ease;
+  }
+
+  .custom-button {
+    @apply min-w-[12rem] min-h-10
+  }
+
+  .custom-button.wipe {
+    @apply bg-[#e00000]
+  }
+
+  .zoom-button {
+    @apply h-10 w-10;
+  }
+
+  .icon-button {
+    @apply h-12 w-12;
+  }
+}
+
+.zoom-button:hover,
+.icon-button:hover,
+.custom-button:hover {
+  transform: scale(1.05);
+}
+
+.disabled-button {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+.disabled-button:hover {
+  transform: scale(1);
+}
+
+.highlight {
+  animation: highlight-button 1s linear infinite alternate;
+}
+
+@keyframes highlight-button {
+  0% {
+    background-color: #F1E0C5;
+  }
+
+  100% {
+    /* background-color: #F0C48D; */
+    background-color: #eacaa3;
+  }
+}
+
+.custom-button:disabled {
+  transform: scale(1);
+  opacity: .5;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #C9B79C;
+  font-family: "Poppins";
+  color: #fffff0e7
+}
+
+.modal-active {
+  overflow: hidden;
+}
+
+.hover-button {
+  transition: 1s ease;
+}
+
+.field-label {
+  @apply flex flex-row font-medium text-base
+}
+
+.placeholders {
+  @apply placeholder-[#808080] placeholder:font-[400]
+}
+
+.encryption-method-item {
+  position: relative;
+  --transition: 0.1s ease;
+  @apply w-[300px] h-[90px] bg-[#F1E0C5] rounded-2xl border-text-primary border-2 flex flex-col justify-start items-center gap-1 p-3 mx-6;
+  transition: var(--transition);
+}
+
+.encryption-method-item:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: var(--transition);
+}
+
+.encryption-method-item.selected {
+  transform: scale(1.05); /* Apply scale to the selected item */
+  box-shadow: 2px 4px 5px rgba(60, 49, 43, 0.675);
+}
+
+.encryption-method-item.selected:hover {
+  /* Prevent additional scaling if the item is already selected */
+  transform: scale(1.05);
+}
+
+.encryption-method-content {
+  visibility: hidden;
+  width: 0;
+  transition: width 0.4s ease, visibility 0s 2s;
+}
+
+.encryption-method-content-title {
+  @apply uppercase font-semibold mb-4
+} 
+
+.encryption-method-content.selected {
+  visibility: visible;
+  width: 350px;
+  overflow: hidden;
+  transition: width 0.4s ease, visibility 0s;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: visible;
+  background-color: rgba(25, 24, 24, 0.635);
+  color: #e8e4e4;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 5px;
+  padding: 2px;
+  position: absolute;
+  max-width: 250px;
+  z-index: 1;
+  bottom: 130%; 
+  right: -10%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-text.icon {
+  bottom: -10px;
+  right: -110px;
+  padding: 2px 10px;
+  margin-left: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tooltip-text.zoom {
+  top: 0px;
+  width: 100px;
+  left: -50px;
+  height: fit-content;
+  transition: opacity 0.5s ease;
+}
+
+.tooltip-container:hover .tooltip-text {
+  opacity: 1;
+}
+
+.checkbox__container {
+  @apply bg-[#F1E0C5] rounded-[22px] border-2 border-text-primary relative;
+  width: 40px;
+  height: 21px;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.checkbox__container.checked {
+  background-color: #98C209
+}
+
+.checkbox__item {
+  @apply h-4 w-4 bg-[#776344] rounded-lg absolute;
+  left: 1px;
+  top: 1px;
+  transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.checkbox__item.checked {
+  background-color: #f1f1f1;
+  transform: translateX(18px);
+}
+
+.spiner {
+  --size: 120px;
+  height: var(--size);
+  width: var(--size);
+  border: solid 5px white;
+  border-color: #F1E0C5 transparent #F1E0C5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wipe-window {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  border: solid 2px #3C312B;
+  border-radius: 15px;
+}
+
+.wipe-window.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-rk] {
+    --rk-colors-actionButtonBorder: rgba(255, 255, 255, 0.04);
+    --rk-colors-actionButtonBorderMobile: rgba(255, 255, 255, 0.08);
+    --rk-colors-actionButtonSecondaryBackground: rgba(255, 255, 255, 0.08);
+    --rk-colors-closeButton: rgba(224, 232, 255, 0.6);
+    --rk-colors-closeButtonBackground: rgba(255, 255, 255, 0.08);
+    --rk-colors-connectButtonBackground: #1A1B1F;
+    --rk-colors-connectButtonInnerBackground: linear-gradient(0deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.15));
+    --rk-colors-connectButtonText: #FFF;
+    --rk-colors-downloadBottomCardBackground: linear-gradient(126deg, rgba(0, 0, 0, 0) 9.49%, rgba(120, 120, 120, 0.2) 71.04%), #1A1B1F;
+    --rk-colors-downloadTopCardBackground: linear-gradient(126deg, rgba(120, 120, 120, 0.2) 9.49%, rgba(0, 0, 0, 0) 71.04%), #1A1B1F;
+    --rk-colors-generalBorder: rgba(255, 255, 255, 0.08);
+    --rk-colors-generalBorderDim: rgba(255, 255, 255, 0.04);
+    --rk-colors-menuItemBackground: rgba(224, 232, 255, 0.1);
+    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.5);
+    --rk-colors-modalBackground: #1A1B1F;
+    --rk-colors-modalBorder: rgba(255, 255, 255, 0.08);
+    --rk-colors-modalText: #FFF;
+    --rk-colors-modalTextDim: rgba(224, 232, 255, 0.3);
+    --rk-colors-modalTextSecondary: rgba(255, 255, 255, 0.6);
+    --rk-colors-profileAction: rgba(224, 232, 255, 0.1);
+    --rk-colors-profileActionHover: rgba(224, 232, 255, 0.2);
+    --rk-colors-profileForeground: rgba(224, 232, 255, 0.05);
+    --rk-colors-selectedOptionBorder: rgba(224, 232, 255, 0.1);
+    --rk-shadows-selectedWallet: 0px 2px 6px rgba(0, 0, 0, 0.24);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  [data-rk] {
+    --rk-colors-actionButtonBorder: rgba(0, 0, 0, 0.04);
+    --rk-colors-actionButtonBorderMobile: rgba(0, 0, 0, 0.08);
+    --rk-colors-actionButtonSecondaryBackground: rgba(0, 0, 0, 0.08);
+    --rk-colors-closeButton: rgba(0, 0, 0, 0.6);
+    --rk-colors-closeButtonBackground: rgba(0, 0, 0, 0.08);
+    --rk-colors-connectButtonBackground: #f1e0c5;
+    --rk-colors-connectButtonInnerBackground: linear-gradient(0deg, rgba(0, 0, 0, 0.075), rgba(0, 0, 0, 0.15));
+    --rk-colors-connectButtonText: #000;
+    --rk-colors-downloadBottomCardBackground: linear-gradient(126deg, rgba(255, 255, 255, 0) 9.49%, rgba(135, 135, 135, 0.2) 71.04%), #f1e0c5;
+    --rk-colors-downloadTopCardBackground: linear-gradient(126deg, rgba(135, 135, 135, 0.2) 9.49%, rgba(255, 255, 255, 0) 71.04%), #f1e0c5;
+    --rk-colors-generalBorder: rgba(0, 0, 0, 0.08);
+    --rk-colors-generalBorderDim: rgba(0, 0, 0, 0.04);
+    --rk-colors-menuItemBackground: rgba(0, 0, 0, 0.1);
+    --rk-colors-modalBackdrop: rgba(255, 255, 255, 0.5);
+    --rk-colors-modalBackground: #f1e0c5;
+    --rk-colors-modalBorder: rgba(0, 0, 0, 0.08);
+    --rk-colors-modalText: #000;
+    --rk-colors-modalTextDim: rgba(0, 0, 0, 0.3);
+    --rk-colors-modalTextSecondary: rgba(0, 0, 0, 0.6);
+    --rk-colors-profileAction: rgba(0, 0, 0, 0.1);
+    --rk-colors-profileActionHover: rgba(0, 0, 0, 0.2);
+    --rk-colors-profileForeground: rgba(0, 0, 0, 0.05);
+    --rk-colors-selectedOptionBorder: rgba(0, 0, 0, 0.1);
+    --rk-shadows-selectedWallet: 0px 2px 6px rgba(0, 0, 0, 0.24);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #F1E0C5; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3c312bb8; 
+  border-radius: 10px;
+  height: 20%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3C312B; 
+}
