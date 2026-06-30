@@ -6,6 +6,10 @@ const socialMedia: { name: SocialMediaTitles, href: string }[] = [
   {
     name: "X",
     href: "https://x.com/OriginsDapp"
+  },
+  {
+    name: "github",
+    href: "https://github.com/suzaku-kururugi/originsdapp"
   }
 ]
 
